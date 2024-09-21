@@ -1,9 +1,11 @@
 import {API_HOST} from './constants';
 import {getPokemonsDetailsProps, PokemonDetails} from '../typings/index.td';
 
-export const fetchPokemon = async (): Promise<PokemonDetails[]> => {
+export const fetchPokemon = async (
+  offset: number,
+): Promise<PokemonDetails[]> => {
   try {
-    const response = await pokemonsApi();
+    const response = await pokemonsApi(offset);
     const pokemonsArray: PokemonDetails[] = [];
 
     for (const pokemon of response.results) {
@@ -37,12 +39,24 @@ async function getPokemonsDetailsByapi(props: getPokemonsDetailsProps) {
   }
 }
 
-const pokemonsApi = async () => {
+const pokemonsApi = async (offset: number) => {
   try {
-    const response = await fetch(`${API_HOST}/pokemon?limit=20&offset=0`);
+    const response = await fetch(
+      `${API_HOST}/pokemon?limit=20&offset=${offset}`,
+    );
     const json = await response.json();
     return json;
   } catch (error) {
     console.error(error);
   }
 };
+
+export async function getPokemonsDetailsapi(id: number) {
+  try {
+    const response = await fetch(`${API_HOST}/pokemon/${id}`);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}

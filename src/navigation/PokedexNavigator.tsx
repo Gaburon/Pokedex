@@ -6,22 +6,22 @@ import PokemonScreen from '../screens/Pokemon';
 
 const Stack = createNativeStackNavigator();
 
-export default function PokedexNavigation() {
+export default function PokedexNavigation(): JSX.Element {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Pokemom"
+        name="PokedexHome"
         component={PokedexScreen}
         options={{
-          headerShown: false,
+          headerShown: true,
+          headerTitleAlign: 'center',
+          title: 'Pokedex',
         }}
       />
       <Stack.Screen
-        name="PokedexChild"
+        name="Pokemon"
         component={PokemonScreen}
-        options={{
-          headerShown: false,
-        }}
+        options={{title: '', headerTransparent: true}}
       />
     </Stack.Navigator>
   );

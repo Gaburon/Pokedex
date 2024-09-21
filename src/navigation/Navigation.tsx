@@ -29,7 +29,7 @@ export default function Navigation() {
         component={PokedexNavigation}
         options={{
           tabBarLabel: '',
-          headerTitleAlign: 'center',
+          headerShown: false,
           tabBarIcon: () => (
             <Image
               source={require('../assets/pokeball.png')}

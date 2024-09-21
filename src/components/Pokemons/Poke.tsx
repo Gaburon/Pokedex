@@ -13,7 +13,15 @@ const PokemonComponent: React.FC<PokemonComponentProps> = ({
   pokemons,
   loading,
   error,
+  loadPokemons,
+  isLoadingMore,
 }) => {
+  const loadMorePokemons = () => {
+    if (!isLoadingMore) {
+      loadPokemons();
+    }
+  };
+
   if (loading) {
     return <ActivityIndicator size="large" color="#0000ff" />;
   }
@@ -30,6 +38,16 @@ const PokemonComponent: React.FC<PokemonComponentProps> = ({
       renderItem={({item: pokemon}) => <PokemonCard pokemon={pokemon} />}
       contentContainerStyle={styles.flatListContentContainer}
       showsVerticalScrollIndicator={false}
+      onEndReached={loadMorePokemons}
+      onEndReachedThreshold={0.5}
+      ListFooterComponent={
+        isLoadingMore ? (
+          <ActivityIndicator
+            style={{marginTop: 20, marginBottom: 40}}
+            color="#0000ff"
+          />
+        ) : null
+      }
     />
   );
 };

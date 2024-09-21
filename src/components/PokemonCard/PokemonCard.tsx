@@ -4,12 +4,12 @@ import {
   StyleSheet,
   Image,
   TouchableWithoutFeedback,
-  Pressable,
 } from 'react-native';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import LinearGradient from 'react-native-linear-gradient';
 import getColorByPokemonType from './utils/GetColorType';
+import {useNavigation} from '@react-navigation/native';
+import {NavigationProps} from './typings/index.td';
 
 export default function PokemonCard(props: any) {
   const {pokemon} = props;
@@ -17,12 +17,15 @@ export default function PokemonCard(props: any) {
   const pokemonColor = getColorByPokemonType(pokemon.type);
   const backgroundStyle = {backgroundColor: pokemonColor, ...styles.background};
 
-  const onPress = () => {
-    console.log(`pokemon: ${pokemon.name}`);
+  const navigation = useNavigation<NavigationProps>();
+
+  const goToPokemon = () => {
+    console.log(`pokemon: ${pokemon.id}`);
+    navigation.navigate('Pokemon', {id: pokemon.id});
   };
 
   return (
-    <TouchableWithoutFeedback onPress={onPress}>
+    <TouchableWithoutFeedback onPress={goToPokemon}>
       <SafeAreaView style={styles.card}>
         <View style={styles.spacing}>
           <View style={backgroundStyle}>
