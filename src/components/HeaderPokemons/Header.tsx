@@ -1,15 +1,12 @@
 import React from 'react';
 import {StyleSheet, View, SafeAreaView, Text, Image} from 'react-native';
 import getColorByPokemonType from '../PokemonCard/utils/GetColorType';
-export default function Header(props: {
-  name: any;
-  order: any;
-  image: any;
-  type: any;
-}) {
-  const {name, order, image, type} = props;
+import {HeaderProps} from './typings/index.td';
+
+export default function Header({name, order, image, type}: HeaderProps) {
   const color = getColorByPokemonType(type);
-  const bgStyle = [{backgroundColor: color, ...styles.bg}];
+  const bgStyle = {backgroundColor: color, ...styles.bg};
+
   return (
     <>
       <View style={bgStyle} />
