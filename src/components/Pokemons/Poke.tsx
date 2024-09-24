@@ -57,14 +57,6 @@ const PokemonComponent: React.FC<PokemonComponentProps> = ({
         showsVerticalScrollIndicator={false}
         onEndReached={loadMorePokemons}
         onEndReachedThreshold={0.5}
-        // ListFooterComponent={
-        //   isLoadingMore ? (
-        //     <ActivityIndicator
-        //       style={{marginTop: 20, marginBottom: 40}}
-        //       color="#0000ff"
-        //     />
-        //   ) : null
-        // }
       />
     </View>
   );
