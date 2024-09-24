@@ -11,6 +11,11 @@ export const fetchPokemon = async (
     for (const pokemon of response.results) {
       const pokemonDetails = await getPokemonsDetailsByapi({
         url: pokemon.url,
+        id: 0,
+        name: '',
+        image: '',
+        type: '',
+        order: 0,
       });
 
       pokemonsArray.push({
@@ -25,6 +30,28 @@ export const fetchPokemon = async (
     return pokemonsArray;
   } catch (error) {
     console.error(error);
+    return [];
+  }
+};
+
+export const fetchPokemonByName = async (
+  name: string,
+): Promise<PokemonDetails[]> => {
+  try {
+    const response = await fetch(`${API_HOST}/pokemon/${name.toLowerCase()}`);
+    const result = await response.json();
+
+    return [
+      {
+        id: result.id,
+        name: result.name,
+        type: result.types[0].type.name,
+        order: result.order,
+        image: result.sprites.other['official-artwork'].front_default,
+      },
+    ];
+  } catch (error) {
+    console.error('Error fetching Pokémon by name:', error);
     return [];
   }
 };

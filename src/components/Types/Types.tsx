@@ -2,9 +2,11 @@ import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import getColorByPokemonType from '../PokemonCard/utils/GetColorType';
 
-export default function Types(props: {
-  types: {type: {name: string}}[];
-}): React.ReactElement {
+export default function Types(
+  props: Readonly<{
+    types: {type: {name: string}}[];
+  }>,
+): React.ReactElement {
   const {types} = props;
 
   const color = (type: string) => getColorByPokemonType(type);

@@ -27,4 +27,8 @@ export interface PokemonComponentProps {
   error: string | null;
   loadPokemons: () => void;
   isLoadingMore: boolean;
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
+  handleSearch: () => void;
+  handleClearSearch: () => void;
 }

@@ -1,9 +1,11 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 
-export default function Stats(props: {
-  stats: {stat: {name: string}; base_stat: number}[];
-}): JSX.Element {
+export default function Stats(
+  props: Readonly<{
+    stats: {stat: {name: string}; base_stat: number}[];
+  }>,
+): JSX.Element {
   const {stats} = props;
 
   const barStyles = (number: number): React.CSSProperties => {
