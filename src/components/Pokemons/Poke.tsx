@@ -9,7 +9,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import {PokemonComponentProps} from './typings/index.td';
-import PokemonCard from '../PokemonCard/PokemonCard';
+import PokemonCardContainer from '../PokemonCard';
 
 const PokemonComponent: React.FC<PokemonComponentProps> = ({
   pokemons,
@@ -43,20 +43,34 @@ const PokemonComponent: React.FC<PokemonComponentProps> = ({
           style={styles.searchInput}
           placeholder="Search Pokémon"
           value={searchTerm}
-          onChangeText={text => setSearchTerm(text)}
+          onChangeText={setSearchTerm}
         />
-        <Button title="Search" onPress={handleSearch} />
-        <Button title="Clear" onPress={handleClearSearch} />
+        <View style={styles.buttonContainer}>
+          <Button title="Search" onPress={handleSearch} />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button title="Clear" onPress={handleClearSearch} />
+        </View>
       </View>
 
       <FlatList
         data={pokemons}
         numColumns={2}
         keyExtractor={pokemon => String(pokemon.id)}
-        renderItem={({item: pokemon}) => <PokemonCard pokemon={pokemon} />}
+        renderItem={({item: pokemon}) => (
+          <PokemonCardContainer pokemon={pokemon} />
+        )}
         showsVerticalScrollIndicator={false}
         onEndReached={loadMorePokemons}
         onEndReachedThreshold={0.5}
+        // ListFooterComponent={
+        //   isLoadingMore ? (
+        //     <ActivityIndicator
+        //       style={{marginTop: 20, marginBottom: 40}}
+        //       color="#0000ff"
+        //     />
+        //   ) : null
+        // }
       />
     </View>
   );
@@ -71,9 +85,14 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     borderColor: '#000',
+    backgroundColor: '#fff',
     borderWidth: 1,
     marginRight: 10,
     padding: 5,
+  },
+  buttonContainer: {
+    width: 80,
+    marginRight: 10,
   },
 });
 

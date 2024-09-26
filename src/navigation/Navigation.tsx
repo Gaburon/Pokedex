@@ -11,7 +11,16 @@ const Tab = createBottomTabNavigator();
 
 export default function Navigation() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={() => ({
+        headerShown: false,
+        tabBarStyle: {
+          paddingTop: 0,
+          backgroundColor: 'rgba(34,36,40,1)',
+          position: 'absolute',
+          borderTopWidth: 0,
+        },
+      })}>
       <Tab.Screen
         name="Favorites"
         component={FavoriteScreen}
@@ -42,8 +51,7 @@ export default function Navigation() {
         name="Account"
         component={AccountScreen}
         options={{
-          headerTitleAlign: 'center',
-          tabBarLabel: 'Cuenta',
+          headerShown: false,
           tabBarIcon: ({color, size}) => (
             <Icon name="person-outline" size={size} color={color} />
           ),

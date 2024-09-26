@@ -90,28 +90,6 @@ export const searchPokemonByName = async (
   }
 };
 
-export const fetchPokemonByName = async (
-  name: string,
-): Promise<PokemonDetails[]> => {
-  try {
-    const response = await fetch(`${API_HOST}/pokemon/${name.toLowerCase()}`);
-    const result = await response.json();
-
-    return [
-      {
-        id: result.id,
-        name: result.name,
-        type: result.types[0].type.name,
-        order: result.order,
-        image: result.sprites.other['official-artwork'].front_default,
-      },
-    ];
-  } catch (error) {
-    console.error('Error fetching Pokémon by name:', error);
-    return [];
-  }
-};
-
 async function getPokemonsDetailsByapi(props: getPokemonsDetailsProps) {
   try {
     const response = await fetch(props.url);

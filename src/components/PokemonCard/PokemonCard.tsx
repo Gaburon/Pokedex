@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   View,
   Text,
@@ -5,30 +6,18 @@ import {
   Image,
   TouchableWithoutFeedback,
 } from 'react-native';
-import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import getColorByPokemonType from './utils/GetColorType';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProps} from './typings/index.td';
+import {PokemonCardComponentProps} from './typings/index.td';
 
-export default function PokemonCard(props: any) {
-  const {pokemon} = props;
-
-  const pokemonColor = getColorByPokemonType(pokemon.type);
-  const backgroundStyle = {backgroundColor: pokemonColor, ...styles.background};
-
-  const navigation = useNavigation<NavigationProps>();
-
-  const goToPokemon = () => {
-    console.log(`pokemon: ${pokemon.id}`);
-    navigation.navigate('Pokemon', {id: pokemon.id});
-  };
-
+const PokemonCardComponent: React.FC<PokemonCardComponentProps> = ({
+  pokemon,
+  goToPokemon,
+}) => {
   return (
     <TouchableWithoutFeedback onPress={goToPokemon}>
       <SafeAreaView style={styles.card}>
         <View style={styles.spacing}>
-          <View style={backgroundStyle}>
+          <View style={[styles.background, pokemon.backgroundStyle]}>
             <Text style={styles.number}>
               #{`${pokemon.order}`.padStart(3, '0')}
             </Text>
@@ -39,7 +28,7 @@ export default function PokemonCard(props: any) {
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );
-}
+};
 
 const styles = StyleSheet.create({
   card: {
@@ -77,3 +66,5 @@ const styles = StyleSheet.create({
     height: 90,
   },
 });
+
+export default PokemonCardComponent;

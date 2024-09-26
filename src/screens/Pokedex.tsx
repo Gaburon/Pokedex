@@ -4,7 +4,7 @@ import PokeContainer from '../components/Pokemons';
 
 export default function Pokedex() {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#7fb3d5'}}>
       <PokeContainer pokemons={[]} loading={false} error={null} />
     </SafeAreaView>
   );

@@ -4,8 +4,8 @@ export const user = {
 };
 
 export const userDetails = {
-  username: 'Gaburon',
-  firtname: 'Andres',
-  lastname: 'Ovalle',
+  userName: 'Gaburon',
+  firstName: 'Andres',
+  lastName: 'Ovalle',
   email: 'japo000@hotmail.com',
 };
