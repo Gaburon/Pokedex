@@ -1,6 +1,6 @@
 import {SafeAreaView, Text} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import PokeContainer from '../components/Pokemons';
+import PokeContainer from '../components/Pokedex';
 
 export default function Pokedex() {
   return (

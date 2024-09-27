@@ -1,24 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import {ScrollView} from 'react-native';
-import {getPokemonsDetailsapi} from '../components/Pokemons/utils/fetch';
+import {getPokemonsDetailsapi} from '../components/Pokedex/utils/fetch';
 import Header from '../components/HeaderPokemons/Header';
 import Types from '../components/Types/Types';
 import Stats from '../components/Stats/Stats';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Favorite from '../components/Favorites/Favorites';
+import useAuth from '../hooks/useAuth';
 
-export default function Pokemon(props: {
-  navigation: any;
-  route: {params: {id: number}};
-}) {
+export default function Pokemon(props: any) {
   const {
     navigation,
     route: {params},
   } = props;
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+  const {auth} = useAuth();
 
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => null,
+      headerRight: () => (auth ? <Favorite id={pokemon?.id} /> : null),
       headerLeft: () => (
         <Icon
           name="arrow-back-outline"
@@ -29,7 +29,7 @@ export default function Pokemon(props: {
         />
       ),
     });
-  }, [navigation, params]);
+  }, [navigation, params, pokemon]);
 
   useEffect(() => {
     (async () => {

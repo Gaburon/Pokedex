@@ -8,7 +8,6 @@ const usePokemonCard = (props: PokemonCardContainerProps) => {
 
   const pokemonColor = getColorByPokemonType(pokemon.type);
   const goToPokemon = () => {
-    console.log(`pokemon: ${pokemon.id}`);
     navigation.navigate('Pokemon', {id: pokemon.id});
   };
 
